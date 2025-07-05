@@ -6,6 +6,10 @@ import { useRef } from "react";
 function Recommended({ recommended, type, darkTheme }) {
   const recRef = useRef(null);
 
+  const scroll = (offset) => {
+    recRef.current?.scrollBy({ left: offset, behavior: "smooth" });
+  };
+
   return (
     <div>
       <h2 className={`text-xl font-bold mb-4 ${darkTheme ? "" : "text-green-700"}`}>
@@ -18,31 +22,40 @@ function Recommended({ recommended, type, darkTheme }) {
         </p>
       ) : (
         <div className="relative">
-          <button
-            onClick={() => recRef.current?.scrollBy({ left: -300, behavior: "smooth" })}
-            className={`cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 z-20 ${
-              darkTheme
-                ? "bg-[#29e3ad] hover:bg-[#1ed2a4] text-black"
-                : "bg-green-400 hover:bg-green-500 text-black"
-            } shadow-lg w-10 h-10 flex items-center justify-center rounded-full transition duration-300`}
-            aria-label="Scroll Left Recommended"
-          >
-            <LuChevronLeft size={24} />
-          </button>
+          {/* Scroll Buttons */}
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+            <button
+              onClick={() => scroll(-400)}
+              className={`cursor-pointer ${
+                darkTheme
+                  ? "bg-[#29e3ad] hover:bg-[#1ed2a4] text-black"
+                  : "bg-green-400 hover:bg-green-500 text-black"
+              } shadow-lg w-10 h-10 flex items-center justify-center rounded-full transition duration-300`}
+              aria-label="Scroll Left"
+            >
+              <LuChevronLeft size={24} />
+            </button>
+          </div>
 
-          <button
-            onClick={() => recRef.current?.scrollBy({ left: 300, behavior: "smooth" })}
-            className={`cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 z-20 ${
-              darkTheme
-                ? "bg-[#29e3ad] hover:bg-[#1ed2a4] text-black"
-                : "bg-green-400 hover:bg-green-500 text-black"
-            } shadow-lg w-10 h-10 flex items-center justify-center rounded-full transition duration-300`}
-            aria-label="Scroll Right Recommended"
-          >
-            <LuChevronRight size={24} />
-          </button>
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+            <button
+              onClick={() => scroll(400)}
+              className={`cursor-pointer ${
+                darkTheme
+                  ? "bg-[#29e3ad] hover:bg-[#1ed2a4] text-black"
+                  : "bg-green-400 hover:bg-green-500 text-black"
+              } shadow-lg w-10 h-10 flex items-center justify-center rounded-full transition duration-300`}
+              aria-label="Scroll Right"
+            >
+              <LuChevronRight size={24} />
+            </button>
+          </div>
 
-          <div ref={recRef} className="flex gap-6 overflow-x-hidden scroll-smooth py-2">
+          {/* Scrolling Content */}
+          <div
+            ref={recRef}
+            className="flex gap-6 overflow-x-auto overflow-y-hidden py-2 px-1 scroll-smooth scrollbar-hide"
+          >
             {recommended.map((item) => {
               const imageUrl = item.poster_path
                 ? `https://image.tmdb.org/t/p/w300${item.poster_path}`

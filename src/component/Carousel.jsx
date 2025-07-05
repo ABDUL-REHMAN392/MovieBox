@@ -30,7 +30,7 @@ function Carousel() {
       try {
         const res = await fetch("https://api.themoviedb.org/3/trending/all/week?language=en-US", options);
         const json = await res.json();
-        setData(json.results.slice(0, 5));
+        setData(json.results.slice(0, 4));
       } catch (err) {
         console.error(err);
       }
