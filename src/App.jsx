@@ -4,6 +4,7 @@ import { Home, Search, SinglePage } from "./pages";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from "react-redux";
+import AuthSuccess from "./pages/AuthSuccess";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,6 +12,8 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path=":type/:id" element={<SinglePage />} />
       <Route path="search" element={<Search />} />
+      <Route path="auth/success" element={<AuthSuccess />} />
+
     </Route>
   )
 );
