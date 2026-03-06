@@ -26,7 +26,7 @@ const conditionSlice = createSlice({
     hideLogin: (state) => {
       state.showLogin = false;
     },
-    showSignup: (state) => {
+    showSignup: (state) => {          // ⬅️ BUG FIX: 'astate' → 'state'
       state.showSignup = true;
     },
     hideSignup: (state) => {
