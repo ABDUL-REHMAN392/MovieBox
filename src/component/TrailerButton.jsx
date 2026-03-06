@@ -1,8 +1,7 @@
-
 import { FaPlay } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
-function TrailerButton({ trailerUrl, darkTheme }) {
+function TrailerButton({ trailerUrl }) {
   if (!trailerUrl) return null;
 
   return (
@@ -10,19 +9,16 @@ function TrailerButton({ trailerUrl, darkTheme }) {
       href={trailerUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${darkTheme
-        ? 'bg-[#29e3ad] text-black hover:bg-[#1ed2a4]'
-        : 'bg-[#29e3ad] text-black hover:bg-[#24c9a2]'
-        } inline-flex items-center gap-2 px-5 py-2 rounded-full font-semibold transition`}
+      className="inline-flex items-center gap-2 bg-[#29e3ad] text-black text-sm font-bold px-5 py-2.5 rounded-full hover:bg-[#22d4a0] hover:scale-105 transition-all shadow-lg shadow-[#29e3ad]/20 cursor-pointer"
     >
-      <FaPlay /> Watch Trailer
+      <FaPlay size={11} /> Watch Trailer
     </a>
   );
 }
 
 TrailerButton.propTypes = {
   trailerUrl: PropTypes.string,
-  darkTheme: PropTypes.bool.isRequired,
+  darkTheme: PropTypes.bool,
 };
 
 export default TrailerButton;

@@ -1,44 +1,46 @@
+// ===== Footer.jsx =====
 import { useSelector } from 'react-redux';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
-function Footer() {
+export function Footer() {
   const { darkTheme } = useSelector(state => state.conditions);
+  const bg = darkTheme ? 'bg-[#080808] border-white/6' : 'bg-white border-gray-100';
+  const text = darkTheme ? 'text-gray-500' : 'text-gray-400';
+  const linkHover = darkTheme ? 'hover:text-white' : 'hover:text-gray-900';
 
   return (
-    <footer className={`${darkTheme ? 'bg-black text-gray-300' : 'bg-white text-gray-700'} border-t ${darkTheme ? 'border-gray-800' : 'border-gray-200'} py-8 px-6`}>
+    <footer className={`border-t ${bg} py-8 px-6`}>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        
-        {/* Logo & Brand */}
+
         <NavLink to='/' className="flex items-center gap-2">
-          <img src="https://movies-app-two-rouge.vercel.app/favicon.svg" alt="Logo" className="w-8 h-8" />
-          <span className="text-lg font-semibold">Movies</span>
+          <img src="https://movies-app-two-rouge.vercel.app/favicon.svg" alt="Logo" className="w-7 h-7" />
+          <span className={`text-sm font-bold tracking-tight ${darkTheme ? 'text-white' : 'text-gray-900'}`}>Movies</span>
         </NavLink>
 
-        {/* Links */}
-        <div className="flex flex-wrap gap-4 text-sm">
-          <a href="#" className="hover:text-[#29e3ad] transition">Home</a>
-          <a href="#" className="hover:text-[#29e3ad] transition">Movies</a>
-          <a href="#" className="hover:text-[#29e3ad] transition">TV Shows</a>
-          <a href="#" className="hover:text-[#29e3ad] transition">Search</a>
+        <div className="flex flex-wrap gap-5 text-xs">
+          {['Home', 'Movies', 'TV Shows', 'Search'].map(link => (
+            <a key={link} href="#" className={`transition-all ${text} ${linkHover} hover:text-[#29e3ad]`}>{link}</a>
+          ))}
         </div>
 
-        {/* Social Icons */}
-        <div className="flex gap-4">
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#29e3ad] transition">
-            <FaGithub size={20} />
-          </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#29e3ad] transition">
-            <FaLinkedin size={20} />
-          </a>
-          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#29e3ad] transition">
-            <FaTwitter size={20} />
-          </a>
+        <div className="flex gap-3">
+          {[
+            { icon: <FaGithub size={16} />, href: "https://github.com/" },
+            { icon: <FaLinkedin size={16} />, href: "https://linkedin.com/" },
+            { icon: <FaTwitter size={16} />, href: "https://twitter.com/" },
+          ].map(({ icon, href }, i) => (
+            <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                darkTheme ? 'bg-white/5 text-gray-400 hover:bg-[#29e3ad]/15 hover:text-[#29e3ad]' : 'bg-gray-100 text-gray-400 hover:bg-[#29e3ad]/10 hover:text-[#29e3ad]'
+              }`}>
+              {icon}
+            </a>
+          ))}
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="text-xs text-center mt-6 opacity-70">
+      <div className={`text-center mt-6 text-[10px] tracking-wider ${text}`}>
         © {new Date().getFullYear()} Movies App. All rights reserved.
       </div>
     </footer>
