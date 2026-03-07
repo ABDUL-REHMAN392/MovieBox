@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import AuthSuccess from "./pages/AuthSuccess";
 import AuthFailure from "./pages/AuthFailure";
 import NotFound from "./pages/NotFound";
+import Favorites from "./pages/Favorites";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="search" element={<Search />} />
       <Route path="auth/success" element={<AuthSuccess />} />
       <Route path="auth/failure" element={<AuthFailure />} />
+      <Route path="favorites" element={<Favorites />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
