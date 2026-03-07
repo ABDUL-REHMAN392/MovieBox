@@ -8,6 +8,7 @@ import AuthSuccess from "./pages/AuthSuccess";
 import AuthFailure from "./pages/AuthFailure";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path="auth/success" element={<AuthSuccess />} />
       <Route path="auth/failure" element={<AuthFailure />} />
       <Route path="favorites" element={<Favorites />} />
+      <Route path="profile" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
