@@ -12,6 +12,7 @@ import { fetchUserProfile, logout } from "./redux/authSlice";
 import { fetchFavorites, resetFavorites } from "./redux/favoritesSlice";
 import NotFound from "./pages/NotFound";
 import { FiAlertTriangle, FiX } from "react-icons/fi";
+import PrivacyPolicy from "./pages/Privacypolicy";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="auth/failure" element={<AuthFailure />} />
       <Route path="favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
       <Route path="profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+      <Route path="privacy-policy" element={<PrivacyPolicy />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
