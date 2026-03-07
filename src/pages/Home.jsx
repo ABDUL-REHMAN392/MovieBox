@@ -30,7 +30,7 @@ function Home() {
   const sectionB = darkTheme ? 'bg-[#080808]' : 'bg-gray-50';
 
   return (
-    <div className={`md:mt-14 ${bg}`}>
+    <div id='home' className={`md:mt-14 ${bg}`}>
       <Carousel />
 
       {/* Trending Movies */}

@@ -7,7 +7,14 @@ export function Footer() {
   const { darkTheme } = useSelector(state => state.conditions);
   const bg = darkTheme ? 'bg-[#080808] border-white/6' : 'bg-white border-gray-100';
   const text = darkTheme ? 'text-gray-500' : 'text-gray-400';
-  const linkHover = darkTheme ? 'hover:text-white' : 'hover:text-gray-900';
+
+  const navLinks = [
+    { label: 'Home', to: '#home' },
+    { label: 'Trending Movies', to: '#TrendingMovies' },
+    { label: 'Trending TV Shows', to: '#TrendingTVShows' },
+    { label: 'Search', to: '/search' },
+    { label: 'Privacy Policy', to: '/privacy-policy' },
+  ];
 
   return (
     <footer className={`border-t ${bg} py-8 px-6`}>
@@ -18,9 +25,15 @@ export function Footer() {
           <span className={`text-sm font-bold tracking-tight ${darkTheme ? 'text-white' : 'text-gray-900'}`}>Movies</span>
         </NavLink>
 
-        <div className="flex flex-wrap gap-5 text-xs">
-          {['Home', 'Movies', 'TV Shows', 'Search'].map(link => (
-            <a key={link} href="#" className={`transition-all ${text} ${linkHover} hover:text-[#29e3ad]`}>{link}</a>
+        <div className="flex flex-wrap justify-center gap-5 text-xs">
+          {navLinks.map(({ label, to }) => (
+            <a
+              key={label}
+              href={to}
+              className={`transition-all ${text} hover:text-[#29e3ad]`}
+            >
+              {label}
+            </a>
           ))}
         </div>
 
@@ -41,7 +54,7 @@ export function Footer() {
       </div>
 
       <div className={`text-center mt-6 text-[10px] tracking-wider ${text}`}>
-        © {new Date().getFullYear()} Movies App. All rights reserved.
+        © {new Date().getFullYear()} MovieBox. All rights reserved.
       </div>
     </footer>
   );
